@@ -1,0 +1,12 @@
+DELIMITER //
+
+CREATE TRIGGER BeforeInsertKitchen
+BEFORE INSERT ON Kitchen
+FOR EACH ROW
+BEGIN
+    IF NEW.Document_TS IS NULL OR NEW.Document_TS = '' THEN
+        SET NEW.Document_TS = CURDATE();
+    END IF;
+END //
+
+DELIMITER ;

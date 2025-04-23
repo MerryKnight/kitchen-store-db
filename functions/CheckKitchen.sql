@@ -1,0 +1,15 @@
+DELIMITER //
+
+CREATE FUNCTION CheckKitchenExists(KitchenName VARCHAR(100))
+RETURNS TINYINT
+DETERMINISTIC
+BEGIN
+    DECLARE KitchenExists TINYINT DEFAULT 0;
+
+    SELECT EXISTS(SELECT 1 FROM Kitchen WHERE Name_Kitchen = KitchenName) 
+    INTO KitchenExists;
+
+    RETURN KitchenExists;
+END //
+
+DELIMITER ;
